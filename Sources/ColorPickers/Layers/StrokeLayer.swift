@@ -2,7 +2,13 @@
 // StrokeLayer.swift
 //
 
+#if os(iOS)
 import UIKit
+#endif
+
+#if os(macOS)
+import Cocoa
+#endif
 
 class StrokeLayer: EllipseLayer {
     
@@ -39,8 +45,8 @@ class StrokeLayer: EllipseLayer {
     // MARK: - Private func
     
     private func setup() {
-        strokeColor = UIColor.white.cgColor
-        shadowColor = UIColor.black.cgColor
+        strokeColor = Color.white.cgColor
+        shadowColor = Color.black.cgColor
         shadowOffset = .zero
         shadowOpacity = 0.8
     }

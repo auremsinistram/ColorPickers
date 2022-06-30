@@ -2,7 +2,14 @@
 // PatternLayer.swift
 //
 
+#if os(iOS)
 import UIKit
+#endif
+
+#if os(macOS)
+import Cocoa
+#endif
+
 import Extensions
 
 class PatternLayer: CAShapeLayer {
@@ -15,10 +22,15 @@ class PatternLayer: CAShapeLayer {
         }
     }
     
-    var colorA: UIColor {
+    var colorA: Color {
         get {
             if let fillColor = fillColor {
-                return UIColor(cgColor: fillColor)
+#if os(iOS)
+                return Color(cgColor: fillColor)
+#endif
+#if os(macOS)
+                return Color(cgColor: fillColor) ?? .clear
+#endif
             }
             return .clear
         }
@@ -27,10 +39,15 @@ class PatternLayer: CAShapeLayer {
         }
     }
     
-    var colorB: UIColor {
+    var colorB: Color {
         get {
             if let backgroundColor = backgroundColor {
-                return UIColor(cgColor: backgroundColor)
+#if os(iOS)
+                return Color(cgColor: backgroundColor)
+#endif
+#if os(macOS)
+                return Color(cgColor: backgroundColor) ?? .clear
+#endif
             }
             return .clear
         }

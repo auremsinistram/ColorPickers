@@ -2,7 +2,14 @@
 // HueLayer.swift
 //
 
+#if os(iOS)
 import UIKit
+#endif
+
+#if os(macOS)
+import Cocoa
+#endif
+
 import Extensions
 
 class HueLayer: CAGradientLayer {
@@ -31,7 +38,7 @@ class HueLayer: CAGradientLayer {
         endPoint = .maxXminY
         var colors = [CGColor]()
         for i in 0...100 {
-            let color = UIColor(
+            let color = Color(
                 hue: 0.01 * CGFloat(i),
                 saturation: 1.0,
                 brightness: 1.0,

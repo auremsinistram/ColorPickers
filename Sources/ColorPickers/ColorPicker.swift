@@ -2,8 +2,23 @@
 // ColorPicker.swift
 //
 
+#if os(iOS)
 import UIKit
+#endif
+
+#if os(macOS)
+import Cocoa
+#endif
+
 import Square
+
+#if os(iOS)
+public typealias Color = UIColor
+#endif
+
+#if os(macOS)
+public typealias Color = NSColor
+#endif
 
 open class ColorPicker: Square {
     
@@ -17,6 +32,8 @@ open class ColorPicker: Square {
         return thumbLayer
     }
     
+#if os(iOS)
+    
     open override var preferredEdgeInsets: UIEdgeInsets {
         let edgeInset: CGFloat = -8.0
         return UIEdgeInsets(
@@ -27,9 +44,11 @@ open class ColorPicker: Square {
         )
     }
     
+#endif
+    
     // MARK: - Open var
     
-    open var thumbColor: UIColor {
+    open var thumbColor: Color {
         get {
             return thumbLayer.color
         }

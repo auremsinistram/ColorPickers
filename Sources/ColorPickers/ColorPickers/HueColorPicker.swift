@@ -2,7 +2,14 @@
 // HueColorPicker.swift
 //
 
+#if os(iOS)
 import UIKit
+#endif
+
+#if os(macOS)
+import Cocoa
+#endif
+
 import Extensions
 import Square
 
@@ -33,7 +40,7 @@ open class HueColorPicker: ColorPicker {
     open override func update(with point: CGPoint) {
         super.update(with: point)
         CALayer.performWithoutAnimation {
-            thumbLayer.color = UIColor(
+            thumbLayer.color = Color(
                 hue: value,
                 saturation: 1.0,
                 brightness: 1.0,

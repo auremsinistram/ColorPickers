@@ -2,17 +2,29 @@
 // AlphaLayer.swift
 //
 
+#if os(iOS)
 import UIKit
+#endif
+
+#if os(macOS)
+import Cocoa
+#endif
+
 import Extensions
 
 class AlphaLayer: CAGradientLayer, Colored {
     
     // MARK: - Colored
     
-    var color: UIColor {
+    var color: Color {
         get {
             if let color = colors?.last {
-                return UIColor(cgColor: color as! CGColor)
+#if os(iOS)
+                return Color(cgColor: color as! CGColor)
+#endif
+#if os(macOS)
+                return Color(cgColor: color as! CGColor) ?? .clear
+#endif
             }
             return .clear
         }

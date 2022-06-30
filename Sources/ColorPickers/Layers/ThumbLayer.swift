@@ -2,7 +2,13 @@
 // ThumbLayer.swift
 //
 
+#if os(iOS)
 import UIKit
+#endif
+
+#if os(macOS)
+import Cocoa
+#endif
 
 class ThumbLayer: CALayer, Colored {
     
@@ -14,7 +20,7 @@ class ThumbLayer: CALayer, Colored {
     
     // MARK: - Colored
     
-    var color: UIColor {
+    var color: Color {
         get {
             return ellipseLayer.color
         }

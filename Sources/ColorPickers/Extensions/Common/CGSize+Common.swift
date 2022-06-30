@@ -2,7 +2,13 @@
 // CGSize+Common.swift
 //
 
+#if os(iOS)
 import UIKit
+#endif
+
+#if os(macOS)
+import Cocoa
+#endif
 
 extension CGSize {
     

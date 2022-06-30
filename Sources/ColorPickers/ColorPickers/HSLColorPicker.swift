@@ -2,7 +2,14 @@
 // HSLColorPicker.swift
 //
 
+#if os(iOS)
 import UIKit
+#endif
+
+#if os(macOS)
+import Cocoa
+#endif
+
 import Extensions
 import Square
 import Colors
@@ -28,7 +35,7 @@ open class HSLColorPicker: ColorPicker, Colored {
     
     // MARK: - Colored
     
-    open var color: UIColor {
+    open var color: Color {
         get {
             return hslLayer.color
         }

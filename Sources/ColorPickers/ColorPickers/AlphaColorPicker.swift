@@ -2,7 +2,14 @@
 // AlphaColorPicker.swift
 //
 
+#if os(iOS)
 import UIKit
+#endif
+
+#if os(macOS)
+import Cocoa
+#endif
+
 import Extensions
 import Square
 
@@ -32,7 +39,7 @@ open class AlphaColorPicker: ColorPicker, Colored {
         }
     }
     
-    open var patternColorA: UIColor {
+    open var patternColorA: Color {
         get {
             return patternLayer.colorA
         }
@@ -41,7 +48,7 @@ open class AlphaColorPicker: ColorPicker, Colored {
         }
     }
     
-    open var patternColorB: UIColor {
+    open var patternColorB: Color {
         get {
             return patternLayer.colorB
         }
@@ -73,7 +80,7 @@ open class AlphaColorPicker: ColorPicker, Colored {
     
     // MARK: - Colored
     
-    open var color: UIColor {
+    open var color: Color {
         get {
             return alphaLayer.color
         }

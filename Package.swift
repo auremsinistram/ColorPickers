@@ -5,7 +5,8 @@ import PackageDescription
 let package = Package(
     name: "ColorPickers",
     platforms: [
-        .iOS(.v9)
+        .iOS(.v9),
+        .macOS(.v10_10)
     ],
     products: [
         .library(
@@ -18,11 +19,11 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/auremsinistram/Square.git",
-            from: .init(0, 1, 0)
+            from: .init(0, 2, 0)
         ),
         .package(
             url: "https://github.com/auremsinistram/Colors.git",
-            from: .init(0, 1, 0)
+            from: .init(0, 2, 1)
         )
     ],
     targets: [

@@ -2,7 +2,14 @@
 // HSVLayer.swift
 //
 
+#if os(iOS)
 import UIKit
+#endif
+
+#if os(macOS)
+import Cocoa
+#endif
+
 import Extensions
 
 class HSVLayer: CALayer, Colored {
@@ -14,10 +21,15 @@ class HSVLayer: CALayer, Colored {
     
     // MARK: - Colored
     
-    var color: UIColor {
+    var color: Color {
         get {
             if let backgroundColor = backgroundColor {
-                return UIColor(cgColor: backgroundColor)
+#if os(iOS)
+                return Color(cgColor: backgroundColor)
+#endif
+#if os(macOS)
+                return Color(cgColor: backgroundColor) ?? .clear
+#endif
             }
             return .clear
         }
@@ -58,16 +70,22 @@ class HSVLayer: CALayer, Colored {
     // MARK: - Private func
     
     private func setup() {
-        let white = UIColor.white
-        let black = UIColor.black
+        let white = Color.white
+        let black = Color.black
         whiteLayer.startPoint = .minXminY
         whiteLayer.endPoint = .maxXminY
         whiteLayer.colors = [
             white.withAlphaComponent(1.0).cgColor,
             white.withAlphaComponent(0.0).cgColor
         ]
+#if os(iOS)
         blackLayer.startPoint = .minXminY
         blackLayer.endPoint = .minXmaxY
+#endif
+#if os(macOS)
+        blackLayer.startPoint = .minXmaxY
+        blackLayer.endPoint = .minXminY
+#endif
         blackLayer.colors = [
             black.withAlphaComponent(0.0).cgColor,
             black.withAlphaComponent(1.0).cgColor
